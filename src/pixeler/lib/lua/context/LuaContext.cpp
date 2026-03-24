@@ -316,6 +316,7 @@ namespace pixeler
 
   int LuaContext::lua_input_is_holded(lua_State* L)
   {
+#ifdef TOUCHSCREEN_SUPPORT
     int args_num = lua_gettop(L);
 
     if (args_num == 0)
@@ -324,15 +325,19 @@ namespace pixeler
     }
     else
     {
+#endif  // #ifdef TOUCHSCREEN_SUPPORT
       int btn = luaL_checkinteger(L, 1);
       lua_pushboolean(L, _input.isHolded(static_cast<BtnID>(btn)));
+#ifdef TOUCHSCREEN_SUPPORT
     }
+#endif  // #ifdef TOUCHSCREEN_SUPPORT
 
     return 1;
   }
 
   int LuaContext::lua_input_is_pressed(lua_State* L)
   {
+#ifdef TOUCHSCREEN_SUPPORT
     int args_num = lua_gettop(L);
 
     if (args_num == 0)
@@ -341,15 +346,18 @@ namespace pixeler
     }
     else
     {
+#endif  // #ifdef TOUCHSCREEN_SUPPORT
       int btn = luaL_checkinteger(L, 1);
       lua_pushboolean(L, _input.isPressed(static_cast<BtnID>(btn)));
+#ifdef TOUCHSCREEN_SUPPORT
     }
-
+#endif  // #ifdef TOUCHSCREEN_SUPPORT
     return 1;
   }
 
   int LuaContext::lua_input_is_released(lua_State* L)
   {
+#ifdef TOUCHSCREEN_SUPPORT
     int args_num = lua_gettop(L);
 
     if (args_num == 0)
@@ -358,15 +366,18 @@ namespace pixeler
     }
     else
     {
+#endif  // #ifdef TOUCHSCREEN_SUPPORT
       int btn = luaL_checkinteger(L, 1);
       lua_pushboolean(L, _input.isReleased(static_cast<BtnID>(btn)));
+#ifdef TOUCHSCREEN_SUPPORT
     }
-
+#endif  // #ifdef TOUCHSCREEN_SUPPORT
     return 1;
   }
 
   int LuaContext::lua_input_lock(lua_State* L)
   {
+#ifdef TOUCHSCREEN_SUPPORT
     int args_num = lua_gettop(L);
 
     if (args_num == 1)
@@ -376,14 +387,17 @@ namespace pixeler
     }
     else
     {
+#endif  // #ifdef TOUCHSCREEN_SUPPORT
       int btn = luaL_checkinteger(L, 1);
       int lock_time = luaL_checkinteger(L, 2);
       _input.lock(static_cast<BtnID>(btn, lock_time));
+#ifdef TOUCHSCREEN_SUPPORT
     }
-
+#endif  // #ifdef TOUCHSCREEN_SUPPORT
     return 0;
   }
 
+#ifdef TOUCHSCREEN_SUPPORT
   int LuaContext::lua_input_get_swipe(lua_State* L)
   {
     lua_pushinteger(L, _input.getSwipe());
@@ -401,6 +415,7 @@ namespace pixeler
     lua_pushinteger(L, _input.getTouchY());
     return 1;
   }
+#endif  // #ifdef TOUCHSCREEN_SUPPORT
 
   int LuaContext::lua_init_type(lua_State* L)
   {
