@@ -69,6 +69,9 @@ namespace pixeler
     static int lua_input_is_pressed(lua_State* L);
     static int lua_input_is_released(lua_State* L);
     static int lua_input_lock(lua_State* L);
+    static int lua_input_get_swipe(lua_State* L);
+    static int lua_input_get_x(lua_State* L);
+    static int lua_input_get_y(lua_State* L);
 
     //---------------------------------------------------------------------------------- helper
 
