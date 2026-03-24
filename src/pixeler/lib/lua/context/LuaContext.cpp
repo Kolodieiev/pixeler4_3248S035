@@ -40,9 +40,11 @@ namespace pixeler
       {"is_pressed", lua_input_is_pressed},
       {"is_released", lua_input_is_released},
       {"lock", lua_input_lock},
+#ifdef TOUCHSCREEN_SUPPORT
       {"getSwipe", lua_input_get_swipe},
       {"getTouchX", lua_input_get_x},
       {"getTouchY", lua_input_get_y},
+#endif  // #ifdef TOUCHSCREEN_SUPPORT
       {nullptr, nullptr},
   };
 
@@ -390,7 +392,7 @@ namespace pixeler
 #endif  // #ifdef TOUCHSCREEN_SUPPORT
       int btn = luaL_checkinteger(L, 1);
       int lock_time = luaL_checkinteger(L, 2);
-      _input.lock(static_cast<BtnID>(btn, lock_time));
+      _input.lock(static_cast<BtnID>(btn), lock_time);
 #ifdef TOUCHSCREEN_SUPPORT
     }
 #endif  // #ifdef TOUCHSCREEN_SUPPORT
